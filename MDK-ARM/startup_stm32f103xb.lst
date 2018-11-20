@@ -496,12 +496,11 @@ ARM Macro Assembler    Page 8
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
 ork --depend=epd2in13-demo\startup_stm32f103xb.d -oepd2in13-demo\startup_stm32f
-103xb.o -ID:\单片机开发\购买模块资料\2.13inch墨水屏\2.13inch_e-Paper_HAT-code\s
-tm32\MDK-ARM\RTE -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include -IC:\Keil_
-v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0\Device\Include --predefine="__MICROLIB SET
-A 1" --predefine="__UVISION_VERSION SETA 518" --predefine="_RTE_ SETA 1" --pred
-efine="STM32F10X_HD SETA 1" --list=startup_stm32f103xb.lst startup_stm32f103xb.
-s
+103xb.o -IC:\Users\ThinkPad\Desktop\epaper\MDK-ARM\RTE\_epd2in13-demo -IC:\Keil
+_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include -IC:\Keil_v5\ARM\PACK\Keil\STM32F1xx
+_DFP\2.0.0\Device\Include --predefine="__MICROLIB SETA 1" --predefine="__UVISIO
+N_VERSION SETA 522" --predefine="_RTE_ SETA 1" --predefine="STM32F10X_HD SETA 1
+" --list=startup_stm32f103xb.lst startup_stm32f103xb.s
 
 
 

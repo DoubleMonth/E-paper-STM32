@@ -117,7 +117,7 @@ int main(void)
   EPD_ClearFrameMemory(&epd, 0xFF);
   
   Paint paint;
-  Paint_Init (&paint, frame_buffer, 128, 24);
+  Paint_Init (&paint, frame_buffer, 128, 60);
  // Paint_Clear(&paint, UNCOLORED);
   
   
@@ -130,26 +130,35 @@ int main(void)
   Paint_Clear(&paint, UNCOLORED);
   Paint_DrawStringAt(&paint, 0, 0, "e-Paper Demo", &Font12, COLORED);
   EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, 128, 24);
-  EPD_DisplayFrame(&epd);
-  
+
   Paint_Clear(&paint, UNCOLORED);
-  Paint_DrawStringAt(&paint, 12, 12, "Hello Kit!", &Font12, COLORED);
+  Paint_DrawStringAt(&paint, 0, 0, "Hello Kit!", &Font12, COLORED);
   EPD_SetFrameMemory(&epd, frame_buffer, 0, 12, 128, 24);
   
+//  EPD_DisplayFrame(&epd);
   
   
-//  /* Draw something to the frame buffer */
-//  Paint_DrawRectangle(&paint, 10, 60, 50, 100, COLORED);
-//  Paint_DrawLine(&paint, 10, 60, 50, 100, COLORED);
-//  Paint_DrawLine(&paint, 50, 60, 10, 100, COLORED);
+  Paint_Init (&paint, frame_buffer, 64, 64);
+  Paint_Clear(&paint, UNCOLORED);
+//  Paint_Init (&paint, frame_buffer, 64, 64);
+  /* Draw something to the frame buffer */
+  Paint_DrawRectangle(&paint, 0, 0, 40, 50, COLORED);
+  Paint_DrawLine(&paint, 0, 0, 40, 50, COLORED);
+  Paint_DrawLine(&paint, 40, 0, 0, 50, COLORED);
 //  Paint_DrawCircle(&paint, 88, 80, 30, COLORED);
 //  Paint_DrawFilledRectangle(&paint, 10, 120, 50, 180, COLORED);
 //  Paint_DrawFilledCircle(&paint, 88, 150, 30, COLORED);
+  
+  EPD_SetFrameMemory(&epd, frame_buffer, 0, 24, 64, 64);
+  
+  EPD_DisplayFrame(&epd);
+  
+  
 //  
 //  /* Display the frame_buffer */
 //  EPD_SetFrameMemory(&epd, frame_buffer, 0, 0, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
 //  EPD_DisplayFrame(&epd);
-//  EPD_DelayMs(&epd, 2000);
+  EPD_DelayMs(&epd, 2000);
 
   /**
    *  there are 2 memory areas embedded in the e-paper display
@@ -163,10 +172,10 @@ int main(void)
 //  EPD_DisplayFrame(&epd);
 
   /* EPD_or partial update */
-//  if (EPD_Init(&epd, lut_partial_update) != 0) {
-//    printf("e-Paper init failed\n");
-//    return -1;
-//  }
+  if (EPD_Init(&epd, lut_partial_update) != 0) {
+    printf("e-Paper init failed\n");
+    return -1;
+  }
 
   /**
    *  there are 2 memory areas embedded in the e-paper display
@@ -174,10 +183,12 @@ int main(void)
    *  i.e. the next action of SetFrameMemory will set the other memory area
    *  therefore you have to set the frame memory and refresh the display twice.
    */
-////  EPD_SetFrameMemory(&epd, IMAGE_DATA, 0, 0, epd.width, epd.height);
-////  EPD_DisplayFrame(&epd);
-////  EPD_SetFrameMemory(&epd, IMAGE_DATA, 0, 0, epd.width, epd.height);
-////  EPD_DisplayFrame(&epd);
+  Paint_Init (&paint, frame_buffer, 64, 64);
+  Paint_Clear(&paint, UNCOLORED);
+  EPD_SetFrameMemory(&epd, IMAGE_DATA, 0, 0, epd.width, epd.height);
+  EPD_DisplayFrame(&epd);
+  EPD_SetFrameMemory(&epd, IMAGE_DATA, 0, 0, epd.width, epd.height);
+  EPD_DisplayFrame(&epd);
 
   time_start_ms = HAL_GetTick();
   /* USER CODE END 2 */
@@ -189,20 +200,20 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
-//////    time_now_s = (HAL_GetTick() - time_start_ms) / 1000;
-//////    time_string[0] = time_now_s / 60 / 10 + '0';
-//////    time_string[1] = time_now_s / 60 % 10 + '0';
-//////    time_string[3] = time_now_s % 60 / 10 + '0';
-//////    time_string[4] = time_now_s % 60 % 10 + '0';
+    time_now_s = (HAL_GetTick() - time_start_ms) / 1000;
+    time_string[0] = time_now_s / 60 / 10 + '0';
+    time_string[1] = time_now_s / 60 % 10 + '0';
+    time_string[3] = time_now_s % 60 / 10 + '0';
+    time_string[4] = time_now_s % 60 % 10 + '0';
 
-//////    Paint_SetWidth(&paint, 32);
-//////    Paint_SetHeight(&paint, 96);
-//////    Paint_SetRotate(&paint, ROTATE_90);
+    Paint_SetWidth(&paint, 32);
+    Paint_SetHeight(&paint, 96);
+    Paint_SetRotate(&paint, ROTATE_90);
 
-//////    Paint_Clear(&paint, UNCOLORED);
-//////    Paint_DrawStringAt(&paint, 0, 4, time_string, &Font24, COLORED);
-//////    EPD_SetFrameMemory(&epd, frame_buffer, 80, 72, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
-//////    EPD_DisplayFrame(&epd);
+    Paint_Clear(&paint, UNCOLORED);
+    Paint_DrawStringAt(&paint, 0, 4, time_string, &Font24, COLORED);
+    EPD_SetFrameMemory(&epd, frame_buffer, 80, 72, Paint_GetWidth(&paint), Paint_GetHeight(&paint));
+    EPD_DisplayFrame(&epd);
 
     EPD_DelayMs(&epd, 500);
   }
